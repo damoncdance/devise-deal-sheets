@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Deal Sheet: 2318 W 18TH PL</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px;
+  font-size: 12.5px;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid #1a1a2e;
+}
+.header-left .brand {
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.header-left h1 {
+  font-size: 20px;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.header-left .subtitle { font-size: 11.5px; color: #666; }
+.score-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  min-width: 80px;
+}
+.score-label { font-size: 9px; display: block; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+.badge-red { background: #c0392b; }
+.badge-orange { background: #e67e22; }
+.badge-grey { background: #7f8c8d; }
+.section {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.section-title {
+  background: #f8f8f8;
+  font-size: 10.5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #555;
+  padding: 6px 14px;
+  border-bottom: 1px solid #eee;
+}
+.section-body { padding: 10px 14px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 20px; }
+.kv { display: flex; gap: 6px; align-items: baseline; }
+.kv .k { color: #777; min-width: 148px; font-size: 11.5px; }
+.kv .v { font-weight: 500; word-break: break-word; }
+.badge-dnc {
+  display: inline-block;
+  background: #c0392b;
+  color: white;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.badge-reverify {
+  display: inline-block;
+  background: #e67e22;
+  color: white;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  font-size: 11.5px;
+}
+.bar-label { min-width: 190px; color: #444; }
+.bar-track { flex: 1; background: #eee; border-radius: 3px; height: 11px; }
+.bar-fill { height: 11px; border-radius: 3px; background: #27ae60; }
+.bar-pts { min-width: 28px; text-align: right; font-weight: bold; color: #27ae60; font-size: 11px; }
+.bar-total .bar-fill { background: #1a1a2e; }
+.bar-total .bar-label { font-weight: bold; }
+.bar-total .bar-pts { color: #1a1a2e; font-size: 13px; }
+.flag-red { color: #c0392b; font-weight: bold; }
+.flag-orange { color: #e67e22; font-weight: bold; }
+.asm-list { list-style: none; font-size: 11.5px; }
+.asm-list li { padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
+.asm-list li:last-child { border-bottom: none; }
+.confidential {
+  font-size: 10px;
+  color: #aaa;
+  text-align: center;
+  border-top: 1px solid #eee;
+  margin-top: 24px;
+  padding-top: 8px;
+}
+.full-width-kv {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #f0f0f0;
+}
+.full-width-kv .k { color: #777; font-size: 11.5px; margin-bottom: 2px; display: block; }
+.full-width-kv .v { font-weight: 500; font-size: 11.5px; }
+.subthresh-note {
+  background: #fffbe6;
+  border-left: 3px solid #e67e22;
+  padding: 8px 12px;
+  font-size: 11.5px;
+  color: #444;
+  line-height: 1.6;
+  border-radius: 0 3px 3px 0;
+}
+.risk-def {
+  font-size: 10.5px;
+  color: #888;
+  font-style: italic;
+  margin-top: 3px;
+}
+.asm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.asm-table th {
+  background: #f0f0f0;
+  text-align: left;
+  padding: 5px 8px;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+  white-space: nowrap;
+}
+.asm-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+.asm-table tr.current-pin td { background: #fff8e1; font-weight: 500; }
+.asm-table .manual-lookup { color: #e67e22; font-weight: bold; font-size: 10px; }
+.map-buttons {
+  padding: 8px 14px;
+  display: flex;
+  gap: 10px;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+}
+.map-btn {
+  display: inline-block;
+  padding: 5px 12px;
+  background: #1a1a2e;
+  color: white;
+  text-decoration: none;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
+.map-btn:hover { background: #2c2c5e; }
+</style>
+</head>
+<body>
+
+<div class="header-row">
+  <div class="header-left">
+    <div class="brand">Devise Property Group LLC | Internal Deal Sheet — Confidential</div>
+    <h1>2318 W 18TH PL</h1>
+    <div class="subtitle">LOWER WEST SIDE &nbsp;·&nbsp; RT-4 &nbsp;·&nbsp; Generated March 25, 2026</div>
+  </div>
+  <div>
+    <span class="score-badge badge-red">
+      <span class="score-label">Score</span>16
+    </span>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Property Details</div>
+  <div class="section-body"><div class="grid"><div class="kv"><span class="k">PIN</span><span class="v">17-19-302-027-0000</span></div><div class="kv"><span class="k">Community Area</span><span class="v">LOWER WEST SIDE</span></div><div class="kv"><span class="k">Lot Size (sf)</span><span class="v">3,116</span></div><div class="kv"><span class="k">Combined Assembly Size (sf)</span><span class="v">6,237</span></div><div class="kv"><span class="k">Zoning</span><span class="v">RT-4</span></div><div class="kv"><span class="k">TSL Status</span><span class="v">Rail</span></div><div class="kv"><span class="k">Hold Years</span><span class="v">10.3 years</span></div><div class="kv"><span class="k">Distance to CTA (ft)</span><span class="v">1,020</span></div></div><div class="full-width-kv"><span class="k">Viable Building Types</span><span class="v">4–8 unit small multifamily or townhome rows</span></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Location</div>
+  <img src="https://staticmap.openstreetmap.de/staticmap.php?center=41.8569180502,-87.6841299539&zoom=16&size=800x400&maptype=mapnik&markers=41.8569180502,-87.6841299539,red" width="100%" style="display:block;" alt="Property map">
+  <div class="map-buttons">
+    <a href="https://maps.cookcountyassessor.com/map/?pin=17-19-302-027-0000" class="map-btn">View on Assessor Map</a>
+    <a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=41.8569180502,-87.6841299539" class="map-btn">Street View</a>
+  </div>
+  <div style="padding:4px 14px 8px;font-size:10px;color:#555;line-height:1.7;">Assessor Map: maps.cookcountyassessor.com/map/?pin=17-19-302-027-0000<br>Street View: maps.google.com/?q=41.8569180502,-87.6841299539&layer=c</div>
+</div>
+<div class="section">
+  <div class="section-title">Ownership &amp; Contact</div>
+  <div class="section-body"><div class="grid"><div class="kv"><span class="k">Owner Name</span><span class="v">EFRAIN SOLIS</span></div><div class="kv"><span class="k">Owner Type</span><span class="v">Individual</span></div><div class="kv"><span class="k">Mailing Address</span><span class="v">10241 5TH AVE CUTOFF</span></div><div class="kv"><span class="k">Phone 1</span><span class="v">—</span></div><div class="kv"><span class="k">Email 1</span><span class="v">—</span></div></div></div>
+</div>
+<div class="section">
+  <div class="section-title">Score Breakdown</div>
+  <div class="section-body"><div class="bar-row"><div class="bar-label">TSL Rail</div><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><div class="bar-pts">+5</div></div><div class="bar-row"><div class="bar-label">Tax Lien Sold</div><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><div class="bar-pts">+4</div></div><div class="bar-row"><div class="bar-label">Hold 10-20 Years</div><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><div class="bar-pts">+2</div></div><div class="bar-row"><div class="bar-label">Multi-Owner Assembly</div><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><div class="bar-pts">+5</div></div><div class="bar-row bar-total"><div class="bar-label">TOTAL SCORE</div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><div class="bar-pts">+16</div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Tax &amp; Hold Data</div>
+  <div class="section-body"><div class="grid"><div class="kv"><span class="k">Tax Stage</span><span class="v">Yes - Lien sold</span></div><div class="kv"><span class="k">Years Delinquent</span><span class="v">0</span></div><div class="kv"><span class="k">Oldest Open Year</span><span class="v">—</span></div><div class="kv"><span class="k">Lien Sold</span><span class="v"><span class="flag-red">YES</span></span></div><div class="kv"><span class="k">Scavenger History</span><span class="v">No</span></div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Notes</div>
+  <div class="section-body"><div style="margin-bottom:6px;">Tax lien sold — manual review before outreach</div><div class="kv"><span class="k">Assembly Risk Level</span><span class="v">Low<div class="risk-def">Same owner holds all parcels — one conversation closes the site</div></span></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Assembly (2 parcels)</div>
+  <div class="section-body" style="padding: 10px 14px;">
+    <div style="overflow-x:auto;"><table class="asm-table"><thead><tr><th>PIN</th><th>Address</th><th>Owner Name</th><th>Score</th><th>Zoning</th><th>Lot sf</th><th>Tax Stage</th><th>Outreach Status</th></tr></thead><tbody><tr><td>17-19-302-026-0000</td><td>2320 W 18TH PL</td><td>ARG PARTNERS</td><td style="text-align:center;">14</td><td>RT-4</td><td style="text-align:right;">3,121</td><td>Yes - Lien sold</td><td style="color:#888;">Not contacted</td></tr><tr class="current-pin"><td>17-19-302-027-0000</td><td>2318 W 18TH PL</td><td>EFRAIN SOLIS</td><td style="text-align:center;">16</td><td>RT-4</td><td style="text-align:right;">3,116</td><td>Yes - Lien sold</td><td style="color:#888;">Not contacted</td></tr></tbody></table></div>
+  </div>
+</div>
+<div class="confidential">Internal use only — Devise Property Group LLC — March 25, 2026</div>
+</body>
+</html>
